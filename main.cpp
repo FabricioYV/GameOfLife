@@ -7,16 +7,14 @@
 using namespace std;
 
 
-int main(){ 
-    GameOfLife game(20, 20);
-    game.LoadFromFile("cells.txt"); // Load initial live cells from file
+int main() {
+    GameOfLife game(100, 100); // 100x100 grid
     
-    for(int i = 0; i < 100; ++i) { // Run for 100 generations
-        system("clear");         // o "cls" en Windows
+    while (true) {
         game.display();
         game.update();
-        usleep(200000);
+        usleep(200000); // 200ms delay (use Sleep(200) on Windows)
     }
-    cout << "Simulation finished." << endl; 
+    
     return 0;
 }

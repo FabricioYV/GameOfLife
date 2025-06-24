@@ -2,32 +2,26 @@
 #define __GAME_OF_LIFE_H__
 
 
-struct Cord {
-    int x;
-    int y;
-
-};
-class GameOfLife
-{
-private:
-    int rows,cols;
-    char **grid;
-    char **nextGrid;
-    int generations ; //Track Current generation
-    int countNeighbors(int row, int col);
-
+class GameOfLife {
 public:
-    GameOfLife(int rows, int cols);
+    GameOfLife(int rows = 100, int cols = 100); // Default to 100x100
     ~GameOfLife();
-
-    void setCellAlive(int row, int col);
-    void LoadFromFile(const char* filename);
-    void countAliveCells() const;
+    
+    void randomInitialize();
     void update();
     void display() const;
-    void moveCells();
+    void countAliveCells() const;
+
+private:
+    int rows;
+    int cols;
+    int generations;
+    char** grid;
+    char** nextGrid;
+    
+    void setCellAlive(int r, int c);
+    int countNeighbors(int row, int col) const;
+    int wrapCoordinate(int value, int max) const;
 };
 
-
-
-#endif // __GAME_OF_LIFE_H__
+#endif
